@@ -4,6 +4,7 @@ using EmailManager.BusinessLayer.Validations;
 using EmailManager.Shared.Models;
 using FluentValidation;
 using MinimalHelpers.FluentValidation;
+using TinyHelpers.AspNetCore.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,10 +16,16 @@ builder.Services.AddValidatorsFromAssemblyContaining<EmailMessageValidator>();
 
 builder.Services.AddOpenApi();
 
+builder.Services.AddDefaultProblemDetails();
+builder.Services.AddDefaultExceptionHandler();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseHttpsRedirection();
+
+app.UseExceptionHandler();
+app.UseStatusCodePages();
 
 app.MapOpenApi();
 app.UseSwaggerUI(options =>
@@ -33,6 +40,7 @@ app.MapPost("/api/{service:regex(smtp)}", async (string service, IServiceProvide
 
     return TypedResults.Ok(response);
 })
+.Produces<SendEmailResult>()
 .WithValidation<EmailMessage>();
 
 app.Run();
