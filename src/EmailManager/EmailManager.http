@@ -1,0 +1,22 @@
+@HostAddress = https://localhost:7116
+@ApiKey = Taggia42!
+
+POST {{HostAddress}}/api/smtp
+x-api-key: {{ApiKey}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "senderName": "Marco Minerva",
+  "senderEmail": "wonderful.email@email.com",
+  "to": [
+    "donald.duck@duckburg.com",
+    "scrooge.mcduck@duckborg.com"
+  ],
+  "subject": "Treasure Hunt Plans with Scrooge & Donald",
+  "htmlContent": "<html><body><p>Greetings Uncle Scrooge and Donald Duck, let&rsquo;s meet tomorrow to finalize our treasure hunt strategy and split the profits equally, cheers!</p></body></html>",
+  "textContent": "Greetings Uncle Scrooge and Donald Duck, let's meet tomorrow to finalize our treasure hunt strategy and split the profits equally, cheers!"
+}
+
+
+###
