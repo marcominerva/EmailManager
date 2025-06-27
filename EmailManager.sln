@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 		.github\copilot-instructions.md = .github\copilot-instructions.md
 		Directory.Build.props = Directory.Build.props
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailManager.Shared", "src\EmailManager.Shared\EmailManager.Shared.csproj", "{9132A40D-F004-45EF-B18D-7AEEF68BE02D}"
@@ -36,5 +37,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {463BDB38-E29B-4A2C-BF0C-A41287B98F1D}
 	EndGlobalSection
 EndGlobal
