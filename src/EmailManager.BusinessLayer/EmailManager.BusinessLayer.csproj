@@ -13,9 +13,11 @@
     <ItemGroup>
       <PackageReference Include="FluentValidation" Version="12.0.0" />
       <PackageReference Include="MailKit" Version="4.13.0" />
+      <PackageReference Include="SimpleAuthenticationTools.Abstractions" Version="3.0.11" />
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\EmailManager.DataAccessLayer\EmailManager.DataAccessLayer.csproj" />
         <ProjectReference Include="..\EmailManager.Shared\EmailManager.Shared.csproj" />
     </ItemGroup>
 

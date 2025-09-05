@@ -1,12 +1,17 @@
 using System.Globalization;
 using System.Threading.RateLimiting;
+using EmailManager.BusinessLayer.Authentication;
 using EmailManager.BusinessLayer.Services;
 using EmailManager.BusinessLayer.Services.Interfaces;
 using EmailManager.BusinessLayer.Validations;
+using EmailManager.DataAccessLayer;
 using EmailManager.Shared.Models;
 using FluentValidation;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.EntityFrameworkCore;
 using MinimalHelpers.FluentValidation;
+using SimpleAuthentication;
+using SimpleAuthentication.ApiKey;
 using TinyHelpers.AspNetCore.Extensions;
 using TinyHelpers.AspNetCore.OpenApi;
 
@@ -57,18 +62,27 @@ builder.Services.AddRateLimiter(options =>
 ValidatorOptions.Global.LanguageManager.Enabled = false;
 builder.Services.AddValidatorsFromAssemblyContaining<EmailMessageValidator>();
 
+builder.Services.AddSingleton(TimeProvider.System);
+
 builder.Services.AddOpenApi(options =>
 {
     options.RemoveServerList();
+    options.AddSimpleAuthentication(builder.Configuration);
 
     options.AddDefaultProblemDetailsResponse();
     options.AddAcceptLanguageHeader();
 });
 
+builder.Services.AddSimpleAuthentication(builder.Configuration);
+builder.Services.AddTransient<IApiKeyValidator, SubscriptionValidator>();
+
+builder.Services.AddAzureSql<ApplicationDbContext>(builder.Configuration.GetConnectionString("SqlConnection"));
+
 builder.Services.AddDefaultProblemDetails();
 builder.Services.AddDefaultExceptionHandler();
 
 var app = builder.Build();
+await ConfigureDatabaseAsync(app.Services);
 
 // Configure the HTTP request pipeline.
 app.UseHttpsRedirection();
@@ -87,8 +101,8 @@ app.UseRouting();
 
 app.UseRequestLocalization();
 
-//app.UseAuthentication();
-//app.UseAuthorization();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseRateLimiter();
 
@@ -100,7 +114,16 @@ app.MapPost("/api/{service:regex(smtp)}", async (string service, IServiceProvide
     return TypedResults.Ok(response);
 })
 .Produces<SendEmailResult>()
+.RequireAuthorization()
 .WithValidation<EmailMessage>()
 .RequireRateLimiting("SendEmail");
 
 app.Run();
+
+static async Task ConfigureDatabaseAsync(IServiceProvider serviceProvider)
+{
+    await using var scope = serviceProvider.CreateAsyncScope();
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+
+    await dbContext.Database.MigrateAsync();
+}
