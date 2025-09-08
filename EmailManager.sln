@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailManager.Shared", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailManager.BusinessLayer", "src\EmailManager.BusinessLayer\EmailManager.BusinessLayer.csproj", "{D7DF698B-95A0-4515-A88F-65DA674E97F3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailManager.DataAccessLayer", "src\EmailManager.DataAccessLayer\EmailManager.DataAccessLayer.csproj", "{EEA8A36B-9EA6-42B5-A371-0E406A48E3FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{D7DF698B-95A0-4515-A88F-65DA674E97F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7DF698B-95A0-4515-A88F-65DA674E97F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7DF698B-95A0-4515-A88F-65DA674E97F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEA8A36B-9EA6-42B5-A371-0E406A48E3FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEA8A36B-9EA6-42B5-A371-0E406A48E3FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEA8A36B-9EA6-42B5-A371-0E406A48E3FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEA8A36B-9EA6-42B5-A371-0E406A48E3FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
