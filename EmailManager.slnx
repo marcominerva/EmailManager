@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".github/copilot-instructions.md" />
+    <File Path="Directory.Build.props" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="src\EmailManager\EmailManager.csproj" Type="C#" />
+  <Project Path="src\EmailManager.Shared\EMailManager.Shared.csproj" Type="C#" />
+  <Project Path="src\EmailManager.BusinessLayer\EmailManager.BusinessLayer.csproj" Type="C#" />
+</Solution>

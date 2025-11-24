@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailManager.Shared", "src\EmailManager.Shared\EmailManager.Shared.csproj", "{9132A40D-F004-45EF-B18D-7AEEF68BE02D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailManager.Shared", "src\EmailManager.Shared\EMailManager.Shared.csproj", "{9132A40D-F004-45EF-B18D-7AEEF68BE02D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailManager.BusinessLayer", "src\EmailManager.BusinessLayer\EmailManager.BusinessLayer.csproj", "{D7DF698B-95A0-4515-A88F-65DA674E97F3}"
 EndProject
